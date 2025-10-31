@@ -1,14 +1,19 @@
 package com.example.questuserinput_050
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Button
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -26,85 +31,103 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun FormDataDiri(modifier: Modifier
-){
-    //Variabel-variabel untuk mengingat nilai masukan dari keyboard
-    var textNama by remember { mutableStateOf(value = "")}
-    var textAlamat by remember { mutableStateOf(value = "")}
-    var textJK by remember { mutableStateOf(value = "")}
+fun FormDataDiri(modifier: Modifier) {
+    Column(modifier = Modifier.fillMaxSize().background(color = Color.LightGray)) {
+        //Variabel-variabel untuk mengingat nilai masukan dari keyboard
+        var textNama by remember { mutableStateOf(value = "") }
+        var textAlamat by remember { mutableStateOf(value = "") }
+        var textJK by remember { mutableStateOf(value = "") }
 
-    //Variabel-variabel untuk menyimpan data yang diperoleh dari komponen UI
-    var nama by remember { mutableStateOf(value = "") }
-    var alamat by remember { mutableStateOf(value = "") }
-    var jenis by remember { mutableStateOf(value = "") }
+        //Variabel-variabel untuk menyimpan data yang diperoleh dari komponen UI
+        var nama by remember { mutableStateOf(value = "") }
+        var alamat by remember { mutableStateOf(value = "") }
+        var jenis by remember { mutableStateOf(value = "") }
 
-    val gender: List<String> = listOf("Laki-laki","Perempuan")
+        val gender: List<String> = listOf("Laki-laki", "Perempuan")
 
-    Column(modifier = Modifier.padding(top = 50.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        OutlinedTextField(
-            value = textNama,
-            singleLine = true,
-            shape = MaterialTheme.shapes.large,
-            modifier = Modifier
-                .width(width = 250.dp),
-            label = { Text(text = "Nama Lengkap") },
-            onValueChange = {
-                textNama = it
-            }
-        )
-        Row {
-            gender.forEach { item ->
-                Row(modifier = Modifier.selectable(
-                    selected = textJK == item,
-                    onClick = {textJK = item }
-                ), verticalAlignment = Alignment.CenterVertically) {
-                    RadioButton(
+        Column(
+            modifier = Modifier.padding(top = 50.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            OutlinedTextField(
+                value = textNama,
+                singleLine = true,
+                shape = MaterialTheme.shapes.large,
+                modifier = Modifier
+                    .width(width = 250.dp),
+                label = { Text(text = "Nama Lengkap") },
+                onValueChange = {
+                    textNama = it
+                }
+            )
+            Row {
+                gender.forEach { item ->
+                    Row(
+                        modifier = Modifier.selectable(
                         selected = textJK == item,
-                        onClick = {
-                            textJK = item
-                        })
-                    Text(item)
+                        onClick = { textJK = item }
+                    ), verticalAlignment = Alignment.CenterVertically) {
+                        RadioButton(
+                            selected = textJK == item,
+                            onClick = {
+                                textJK = item
+                            })
+                        Text(item)
+                    }
                 }
             }
-        }
-        OutlinedTextField(
-            value = textAlamat,
-            singleLine = true,
-            shape = MaterialTheme.shapes.large,
-            modifier = Modifier.width(width = 250.dp),
-            label = {Text(text = "Alamat Lengkap")},
-            onValueChange = {
-                textAlamat = it
+            OutlinedTextField(
+                value = textAlamat,
+                singleLine = true,
+                shape = MaterialTheme.shapes.large,
+                modifier = Modifier.width(width = 250.dp),
+                label = { Text(text = "Alamat Lengkap") },
+                onValueChange = {
+                    textAlamat = it
+                }
+            )
+
+            Divider(
+                modifier = Modifier.padding(
+                    bottom = dimensionResource(id = R.dimen.padding_medium),
+                    top = dimensionResource(id = R.dimen.padding_medium)
+                ),
+                thickness = dimensionResource(id = R.dimen.divider_tipis),
+                color = Color.Black
+            )
+            Button(
+                modifier = Modifier.fillMaxWidth(1f),
+                // The button is enabled when the user makes a selection
+                enabled = textAlamat.isNotEmpty(),
+                onClick = {
+                    nama = textNama
+                    jenis = textJK
+                    alamat = textAlamat
+                }
+            ) {
+                Text(text = stringResource(id = R.string.submit))
             }
-        )
 
-        Divider(
-            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding_medium), top = dimensionResource(id = R.dimen.padding_medium)),
-            thickness = dimensionResource(id = R.dimen.divider_tipis),
-            color = Color.Red
-        )
-        Button(
-            modifier = Modifier.fillMaxWidth(1f),
-            // The button is enabled when the user makes a selection
-            enabled = textAlamat.isNotEmpty(),
-            onClick = {
-                nama=textNama
-                jenis=textJK
-                alamat=textAlamat
-            }
-        ) {
-            Text(text = stringResource(id = R.string.submit))
+            Divider(
+                modifier = Modifier.padding(
+                    bottom = dimensionResource(id = R.dimen.padding_medium),
+                    top = dimensionResource(id = R.dimen.padding_medium)
+                ),
+                thickness = dimensionResource(id = R.dimen.divider_tipis),
+                color = Color.Black
+            )
+
+            ElevatedCard(
+                elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.Black),
+                modifier = Modifier
+                    .height(100.dp)
+                    .width(300.dp)
+            ) {  }
+
+
         }
-
-        Divider(
-            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding_medium), top = dimensionResource(id = R.dimen.padding_medium)),
-            thickness = dimensionResource(id = R.dimen.divider_tipis),
-            color = Color.Blue
-        )
-
 
     }
-
 }
