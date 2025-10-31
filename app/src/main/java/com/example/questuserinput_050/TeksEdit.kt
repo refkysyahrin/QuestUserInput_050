@@ -41,7 +41,8 @@ fun FormDataDiri(modifier: Modifier
             value = textNama,
             singleLine = true,
             shape = MaterialTheme.shapes.large,
-            modifier = Modifier.width(width = 250.dp),
+            modifier = Modifier
+                .width(width = 250.dp),
             label = { Text(text = "Nama Lengkap") },
             onValueChange = {
                 textNama = it
@@ -59,10 +60,18 @@ fun FormDataDiri(modifier: Modifier
                             textJK = item
                         })
                     Text(item)
-
                 }
             }
         }
+        OutlinedTextField(
+            value = textAlamat,
+            singleLine = true,
+            modifier = Modifier.width(width = 250.dp),
+            label = {Text(text = "Alamat Lengkap")},
+            onValueChange = {
+                textAlamat = it
+            }
+        )
 
     }
 
