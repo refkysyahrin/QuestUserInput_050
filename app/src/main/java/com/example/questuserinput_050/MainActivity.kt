@@ -19,28 +19,37 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             QuestUserInput_050Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                   Praktikum5(
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                Praktikum5(
+                )
             }
         }
     }
 }
 
 @Composable
+
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+
     Text(
+
         text = "Hello $name!",
+
         modifier = modifier
+
     )
+
 }
 
 @Preview(showBackground = true)
+
 @Composable
+
 fun GreetingPreview() {
+
     QuestUserInput_050Theme {
+
         Greeting("Android")
+
     }
+
 }
