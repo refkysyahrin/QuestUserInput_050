@@ -33,34 +33,34 @@ import kotlinx.coroutines.sync.Mutex
 import java.util.Date
 
 @Composable
-fun FormRegistrasi(modifier: Modifier){
+fun Praktikum5(modifier: Modifier){
     Box{
         //Variabel-variabel untuk mengingat nilai masukan dari keyboard
-        var textNama by remember { mutableStateOf("") }
-        var textKota by remember { mutableStateOf("") }
-        var textRT by remember { mutableStateOf("") }
-        var textRW by remember { mutableStateOf("") }
-        var textUmur by remember { mutableStateOf("") }
-        var textTanggal by remember { mutableStateOf("") }
-        var textJK by remember { mutableStateOf("") }
+        var textNama by remember { mutableStateOf(value = "") }
+        var textKota by remember { mutableStateOf(value = "") }
+        var textRT by remember { mutableStateOf(value = "") }
+        var textRW by remember { mutableStateOf(value = "") }
+        var textUmur by remember { mutableStateOf(value = "") }
+        var textTanggal by remember { mutableStateOf(value = "") }
+        var textJK by remember { mutableStateOf(value = "") }
 
         //Variabel-variabel untuk menyimpan data yang diperoleh dari komponen UI
-        var Nama by remember { mutableStateOf("") }
-        var Kota by remember { mutableStateOf("") }
-        var RT by remember { mutableStateOf("") }
-        var RW by remember { mutableStateOf("") }
-        var Umur by remember { mutableStateOf("") }
-        var Tanggal by remember { mutableStateOf("") }
+        var nama by remember { mutableStateOf(value = "") }
+        var kota by remember { mutableStateOf(value = "") }
+        var rt by remember { mutableStateOf(value = "") }
+        var rw by remember { mutableStateOf(value = "") }
+        var umur by remember { mutableStateOf(value = "") }
+        var tanggal by remember { mutableStateOf(value = "") }
 
         val gender: List<String> = listOf("Laki-laki", "Perempuan")
         val validasi= remember { mutableStateOf(false) }
 
-        Image(modifier = Modifier.fillMaxSize(), painter = painterResource(id = R.drawable.eky_bg),
+        Image(modifier = Modifier.fillMaxSize(), painter = painterResource(id = R.drawable.bgterbaru),
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
         Text(
-            text = stringResource(R.string.Registrasi),
+            text = stringResource(R.string.registrasi),
             color = Color.Black,
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
@@ -150,6 +150,26 @@ fun FormRegistrasi(modifier: Modifier){
                 )
 
                 Spacer(modifier = Modifier.height(height = 10.dp))
+
+                OutlinedTextField(
+                    value = textUmur,
+                    singleLine = true,
+                    shape = MaterialTheme.shapes.large,
+                    modifier = Modifier
+                        .padding(top = 10.dp, start = 50.dp, end = 50.dp)
+                        .fillMaxWidth()
+                        .height(height = 70.dp),
+                    label = {Text(text = "Umur")},
+                    onValueChange = {
+                        textUmur = it
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(height = 10.dp))
+
+                Text(
+                    text = stringResource(R.string.)
+                )
 
 
             }
