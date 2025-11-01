@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -82,6 +83,22 @@ fun FormRegistrasi(modifier: Modifier){
                 label = { Text(text = "Nama Lengkap")},
                 onValueChange = {
                     textNama = it
+                }
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            OutlinedTextField(
+                value = textKota,
+                singleLine = true,
+                shape = MaterialTheme.shapes.large,
+                modifier = Modifier
+                    .padding(top = 30.dp, start = 50.dp, end = 50.dp)
+                    .fillMaxWidth()
+                    .height(height = 70.dp),
+                label = { Text(text = "Asal Kota")},
+                onValueChange = {
+                    textKota = it
                 }
             )
         }
