@@ -4,11 +4,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -101,6 +103,24 @@ fun FormRegistrasi(modifier: Modifier){
                     textKota = it
                 }
             )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Row() {
+                OutlinedTextField(
+                    value = textTanggal,
+                    singleLine = true,
+                    shape = MaterialTheme.shapes.large,
+                    modifier = Modifier
+                        .padding(start = 50.dp)
+                        .width(width = 12.dp)
+                        .height(height = 70.dp),
+                    label = {Text(text = "Tanggal Lahir")},
+                    onValueChange = {
+                        textTanggal = it
+                    }
+                )
+            }
         }
 
     }
