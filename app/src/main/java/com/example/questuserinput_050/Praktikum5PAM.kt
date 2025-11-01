@@ -6,7 +6,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -58,8 +61,14 @@ fun FormRegistrasi(modifier: Modifier){
             fontWeight = FontWeight.Bold,
             modifier = Modifier.fillMaxWidth()
                 .padding(top = 50.dp, start = 100.dp),
-
         )
+
+        Card(modifier = Modifier
+            .padding(top = 100.dp, start = 20.dp, end = 20.dp)
+            .fillMaxWidth()
+            .height(height = 650.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.6f))
+        ){}
 
     }
 
