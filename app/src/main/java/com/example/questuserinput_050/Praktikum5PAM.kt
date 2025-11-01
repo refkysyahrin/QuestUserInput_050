@@ -134,6 +134,24 @@ fun FormRegistrasi(modifier: Modifier){
                         textRW = it
                     }
                 )
+
+                OutlinedTextField(
+                    value = textRT,
+                    singleLine = true,
+                    shape = MaterialTheme.shapes.large,
+                    modifier = Modifier
+                        .padding(start = 30.dp)
+                        .width(width = 70.dp)
+                        .height(height = 70.dp),
+                    label = {Text(text = "RT")},
+                    onValueChange = {
+                        textRT = it
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(height = 10.dp))
+
+
             }
         }
 
