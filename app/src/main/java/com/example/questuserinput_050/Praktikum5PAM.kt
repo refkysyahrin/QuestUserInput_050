@@ -1,5 +1,6 @@
 package com.example.questuserinput_050
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import kotlinx.coroutines.sync.Mutex
 import java.util.Date
 
@@ -36,6 +39,11 @@ fun FormRegistrasi(modifier: Modifier){
 
         val gender: List<String> = listOf("Laki-laki", "Perempuan")
         val validasi= remember { mutableStateOf(false) }
+
+        Image(modifier = Modifier.fillMaxSize(), painter = painterResource(id = R.drawable.eky_bg),
+            contentDescription = null,
+            contentScale = ContentScale.Crop
+        )
     }
 
 }
