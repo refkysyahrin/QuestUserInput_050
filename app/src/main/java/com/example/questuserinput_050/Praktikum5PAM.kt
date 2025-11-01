@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -68,7 +70,21 @@ fun FormRegistrasi(modifier: Modifier){
             .fillMaxWidth()
             .height(height = 650.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.6f))
-        ){}
+        ){
+            OutlinedTextField(
+                value = textNama,
+                singleLine = true,
+                shape = MaterialTheme.shapes.large,
+                modifier = Modifier
+                    .padding(top = 30.dp, start = 50.dp, end = 50.dp)
+                    .fillMaxWidth()
+                    .height(height = 70.dp),
+                label = { Text(text = "Nama Lengkap")},
+                onValueChange = {
+                    textNama = it
+                }
+            )
+        }
 
     }
 
