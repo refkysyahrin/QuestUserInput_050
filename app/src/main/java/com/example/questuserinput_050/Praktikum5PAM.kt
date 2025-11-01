@@ -68,7 +68,7 @@ fun Praktikum5(modifier: Modifier = Modifier){
     var showDialog by remember { mutableStateOf(value = false) }
     Box(modifier = modifier.fillMaxSize()){
         Image(modifier = Modifier.fillMaxSize(),
-            painter = painterResource(id = R.drawable.backgroundandroidmerahputih),
+            painter = painterResource(id = R.drawable.backgroundandroidmerahputih ),
             contentDescription = null,
             contentScale = ContentScale.FillHeight
         )
@@ -156,6 +156,8 @@ fun Praktikum5(modifier: Modifier = Modifier){
                             textRW = it
                         }
                     )
+
+
 
                     //Spacer(modifier = Modifier.width(width = 20.dp))
 
@@ -268,12 +270,12 @@ fun Praktikum5(modifier: Modifier = Modifier){
                 title = {Text(text = "Data Pendaftaran")},
                 text = {
                     Column {
-                        Text(text = "Nama       :$nama")
-                        Text(text = "Asal Kota  :$kota")
-                        Text(text = "Tgl Lahir  :$tanggal")
+                        Text(text = "Nama       : $nama")
+                        Text(text = "Asal Kota : $kota")
+                        Text(text = "Tgl Lahir  : $tanggal")
                         Text(text = "Alamat     : RT $rt / RW $rw")
-                        Text(text = "Umur       :$umur")
-                        Text(text = "Kelamin    :$jenisKelamin")
+                        Text(text = "Umur        : $umur")
+                        Text(text = "Kelamin   : $jenisKelamin")
                     }
                 },
                 confirmButton = {
