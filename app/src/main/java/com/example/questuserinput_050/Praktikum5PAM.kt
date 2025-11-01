@@ -1,8 +1,8 @@
 package com.example.questuserinput_050
 
-import androidx.compose.animation.core.withInfiniteAnimationFrameMillis
+
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,7 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
@@ -29,14 +33,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.sync.Mutex
-import java.util.Date
 
 @Composable
 fun Praktikum5(modifier: Modifier){
@@ -51,35 +54,47 @@ fun Praktikum5(modifier: Modifier){
         var textJK by remember { mutableStateOf(value = "") }
 
         //Variabel-variabel untuk menyimpan data yang diperoleh dari komponen UI
-        var nama by remember { mutableStateOf(value = "") }
-        var kota by remember { mutableStateOf(value = "") }
-        var rt by remember { mutableStateOf(value = "") }
-        var rw by remember { mutableStateOf(value = "") }
-        var umur by remember { mutableStateOf(value = "") }
-        var tanggal by remember { mutableStateOf(value = "") }
+        var Nama by remember { mutableStateOf(value = "") }
+        var Kota by remember { mutableStateOf(value = "") }
+        var RT by remember { mutableStateOf(value = "") }
+        var RW by remember { mutableStateOf(value = "") }
+        var Umur by remember { mutableStateOf(value = "") }
+        var Tanggal by remember { mutableStateOf(value = "") }
+        var JenisKelamin by remember { mutableStateOf(value = "") }
 
         val gender: List<String> = listOf("Laki-laki", "Perempuan")
-        val validasi= remember { mutableStateOf(false) }
+        val validasi= remember { mutableStateOf(value = false) }
 
-        Image(modifier = Modifier.fillMaxSize(), painter = painterResource(id = R.drawable.bgterbaru),
+        var showDialog by remember { mutableStateOf(value = false) }
+
+        Image(modifier = Modifier.fillMaxSize(),
+            painter = painterResource(id = R.drawable.bgterbaru),
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
         Text(
-            text = stringResource(R.string.registrasi),
+            text = stringResource(id = R.string.registrasi),
             color = Color.Black,
-            fontSize = 32.sp,
+            fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.fillMaxWidth()
-                .padding(top = 50.dp, start = 100.dp),
+            modifier = Modifier.fillMaxSize()
+                .padding(top = 70.dp, start = 80.dp),
         )
 
-        Card(modifier = Modifier
-            .padding(top = 100.dp, start = 20.dp, end = 20.dp)
+        Card(
+            modifier = Modifier
+            .padding(top = 140.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
             .fillMaxWidth()
             .height(height = 650.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.6f))
+            colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.white).copy(alpha = 0.6f)
+            )
         ){
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(bottom = 20.dp)
+            ){
             OutlinedTextField(
                 value = textNama,
                 singleLine = true,
@@ -94,7 +109,7 @@ fun Praktikum5(modifier: Modifier){
                 }
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+            //Spacer(modifier = Modifier.height(10.dp))
 
             OutlinedTextField(
                 value = textKota,
@@ -121,7 +136,7 @@ fun Praktikum5(modifier: Modifier){
                         .padding(start = 50.dp)
                         .width(width = 120.dp)
                         .height(height = 70.dp),
-                    label = {Text(text = "Tanggal Lahir")},
+                    label = { Text(text = "Tanggal Lahir") },
                     onValueChange = {
                         textTanggal = it
                     }
@@ -135,25 +150,28 @@ fun Praktikum5(modifier: Modifier){
                         .padding(start = 30.dp)
                         .width(width = 70.dp)
                         .height(height = 70.dp),
-                    label = {Text(text = "RW")},
+                    label = { Text(text = "RW") },
                     onValueChange = {
                         textRW = it
                     }
                 )
+
+                //Spacer(modifier = Modifier.width(width = 5.dp))
 
                 OutlinedTextField(
                     value = textRT,
                     singleLine = true,
                     shape = MaterialTheme.shapes.large,
                     modifier = Modifier
-                        .padding(start = 30.dp)
+                        .padding(start = 5.dp)
                         .width(width = 70.dp)
                         .height(height = 70.dp),
-                    label = {Text(text = "RT")},
+                    label = { Text(text = "RT") },
                     onValueChange = {
                         textRT = it
                     }
                 )
+            }
 
                 Spacer(modifier = Modifier.height(height = 10.dp))
 
@@ -185,14 +203,11 @@ fun Praktikum5(modifier: Modifier){
                     gender.forEach { item ->
                         Row(
                             modifier = Modifier
-                                .padding(start = 20.dp)
+                                .padding(start = 40.dp)
                                 .selectable(
                                     selected = textJK == item,
                                     onClick = {textJK = item},
-                                    role = Role.RadioButton
-                                    ),
-
-                            verticalAlignment = Alignment.CenterVertically
+                                ), verticalAlignment = Alignment.CenterVertically
                         ){
                                 RadioButton(
                                     selected = textJK == item,
@@ -206,7 +221,8 @@ fun Praktikum5(modifier: Modifier){
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ){
-                    Checkbox(modifier = Modifier.padding(start = 4.dp),
+                    Checkbox(
+                        modifier = Modifier.padding(start = 40.dp),
                         checked = validasi.value,
                         onCheckedChange = {
                             newValue -> validasi.value = newValue
@@ -219,10 +235,64 @@ fun Praktikum5(modifier: Modifier){
                     )
                 }
 
+                Spacer(modifier = Modifier.height(height = 40.dp))
 
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth(1f)
+                        .padding(top = 10.dp, start = 100.dp, end = 100.dp)
+                        .height(height = 60.dp),
+
+                    enabled = validasi.value,
+                    onClick = {
+                        Nama = textNama
+                        Kota = textKota
+                        Tanggal = textTanggal
+                        RT = textRT
+                        RW = textRW
+                        Umur = textUmur
+                        JenisKelamin = textJK
+
+                        showDialog = true
+                    }
+                ) {
+                    Text(text = stringResource(id = R.string.submit))
+                }
             }
         }
-
+        if(showDialog){
+            AlertDialog(
+                onDismissRequest = {showDialog = false},
+                title = {Text(text = "Data Pendaftaran")},
+                text = {
+                    Column {
+                        Text(text = "Nama:$Nama")
+                        Text(text = "Asal Kota:$Kota")
+                        Text(text = "Tgl Lahir:$Tanggal")
+                        Text(text = "Alamat: RT $RT / RW $RW")
+                        Text(text = "Umur:$Umur")
+                        Text(text = "Jenis Kelamin:$JenisKelamin")
+                    }
+                },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            showDialog = false
+                            // Opsional: Kosongkan kembali form setelah dialog ditutup
+                            textNama= ""
+                            textKota= ""
+                            textTanggal= ""
+                            textRT= ""
+                            textRW= ""
+                            textUmur= ""
+                            textJK= ""
+                            validasi.value= false
+                        }
+                    ) {
+                        Text("OK")
+                    }
+                }
+            )
+        }
     }
-
-}
+    }
