@@ -1,6 +1,7 @@
 package com.example.questuserinput_050
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -15,5 +16,15 @@ import java.util.Date
 
 @Composable
 fun FormRegistrasi(modifier: Modifier){
+    Box{
+        //Variabel-variabel untuk mengingat nilai masukan dari keyboard
+        var textNama by remember { mutableStateOf("") }
+        var textKota by remember { mutableStateOf("") }
+        var textRT by remember { mutableStateOf("") }
+        var textRW by remember { mutableStateOf("") }
+        var textUmur by remember { mutableStateOf("") }
+        var textTanggal by remember { mutableStateOf("") }
+        var textJK by remember { mutableStateOf("") }
+    }
 
 }
