@@ -33,6 +33,9 @@ fun FormRegistrasi(modifier: Modifier){
         var RW by remember { mutableStateOf("") }
         var Umur by remember { mutableStateOf("") }
         var Tanggal by remember { mutableStateOf("") }
+
+        val gender: List<String> = listOf("Laki-laki", "Perempuan")
+        val validasi= remember { mutableStateOf(false) }
     }
 
 }
