@@ -25,6 +25,14 @@ fun FormRegistrasi(modifier: Modifier){
         var textUmur by remember { mutableStateOf("") }
         var textTanggal by remember { mutableStateOf("") }
         var textJK by remember { mutableStateOf("") }
+
+        //Variabel-variabel untuk menyimpan data yang diperoleh dari komponen UI
+        var Nama by remember { mutableStateOf("") }
+        var Kota by remember { mutableStateOf("") }
+        var RT by remember { mutableStateOf("") }
+        var RW by remember { mutableStateOf("") }
+        var Umur by remember { mutableStateOf("") }
+        var Tanggal by remember { mutableStateOf("") }
     }
 
 }
