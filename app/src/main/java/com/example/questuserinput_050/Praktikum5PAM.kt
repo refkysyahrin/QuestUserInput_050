@@ -113,11 +113,25 @@ fun FormRegistrasi(modifier: Modifier){
                     shape = MaterialTheme.shapes.large,
                     modifier = Modifier
                         .padding(start = 50.dp)
-                        .width(width = 12.dp)
+                        .width(width = 120.dp)
                         .height(height = 70.dp),
                     label = {Text(text = "Tanggal Lahir")},
                     onValueChange = {
                         textTanggal = it
+                    }
+                )
+
+                OutlinedTextField(
+                    value = textRW,
+                    singleLine = true,
+                    shape = MaterialTheme.shapes.large,
+                    modifier = Modifier
+                        .padding(start = 30.dp)
+                        .width(width = 70.dp)
+                        .height(height = 70.dp),
+                    label = {Text(text = "RW")},
+                    onValueChange = {
+                        textRW = it
                     }
                 )
             }
