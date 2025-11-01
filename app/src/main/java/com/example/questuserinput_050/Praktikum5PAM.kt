@@ -36,56 +36,57 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+
 @Composable
-fun Praktikum5(modifier: Modifier){
-    Box{
-        //Variabel-variabel untuk mengingat nilai masukan dari keyboard
-        var textNama by remember { mutableStateOf(value = "") }
-        var textKota by remember { mutableStateOf(value = "") }
-        var textRT by remember { mutableStateOf(value = "") }
-        var textRW by remember { mutableStateOf(value = "") }
-        var textUmur by remember { mutableStateOf(value = "") }
-        var textTanggal by remember { mutableStateOf(value = "") }
-        var textJK by remember { mutableStateOf(value = "") }
+fun Praktikum5(modifier: Modifier = Modifier){
+    //Variabel-variabel untuk mengingat nilai masukan dari keyboard
+    var textNama by remember { mutableStateOf(value = "") }
+    var textKota by remember { mutableStateOf(value = "") }
+    var textRT by remember { mutableStateOf(value = "") }
+    var textRW by remember { mutableStateOf(value = "") }
+    var textUmur by remember { mutableStateOf(value = "") }
+    var textTanggal by remember { mutableStateOf(value = "") }
+    var textJK by remember { mutableStateOf(value = "") }
 
-        //Variabel-variabel untuk menyimpan data yang diperoleh dari komponen UI
-        var Nama by remember { mutableStateOf(value = "") }
-        var Kota by remember { mutableStateOf(value = "") }
-        var RT by remember { mutableStateOf(value = "") }
-        var RW by remember { mutableStateOf(value = "") }
-        var Umur by remember { mutableStateOf(value = "") }
-        var Tanggal by remember { mutableStateOf(value = "") }
-        var JenisKelamin by remember { mutableStateOf(value = "") }
+    //Variabel-variabel untuk menyimpan data yang diperoleh dari komponen UI
+    var nama by remember { mutableStateOf(value = "") }
+    var kota by remember { mutableStateOf(value = "") }
+    var rt by remember { mutableStateOf(value = "") }
+    var rw by remember { mutableStateOf(value = "") }
+    var umur by remember { mutableStateOf(value = "") }
+    var tanggal by remember { mutableStateOf(value = "") }
+    var jenisKelamin by remember { mutableStateOf(value = "") }
 
-        val gender: List<String> = listOf("Laki-laki", "Perempuan")
-        val validasi= remember { mutableStateOf(value = false) }
+    val gender: List<String> = listOf("Laki-laki", "Perempuan")
+    val validasi= remember { mutableStateOf(value = false) }
 
-        var showDialog by remember { mutableStateOf(value = false) }
-
+    var showDialog by remember { mutableStateOf(value = false) }
+    Box(modifier = modifier.fillMaxSize()){
         Image(modifier = Modifier.fillMaxSize(),
-            painter = painterResource(id = R.drawable.bgterbaru),
+            painter = painterResource(id = R.drawable.backgroundandroidmerahputih),
             contentDescription = null,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillHeight
         )
         Text(
             text = stringResource(id = R.string.registrasi),
             color = Color.Black,
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.fillMaxSize()
-                .padding(top = 70.dp, start = 80.dp),
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+                .padding(top = 70.dp),
         )
 
         Card(
             modifier = Modifier
-            .padding(top = 140.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
-            .fillMaxWidth()
-            .height(height = 650.dp),
+                .padding(top = 140.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+                .fillMaxWidth()
+                .height(height = 650.dp),
             colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.white).copy(alpha = 0.6f)
             )
         ){
@@ -93,85 +94,85 @@ fun Praktikum5(modifier: Modifier){
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
-                    .padding(bottom = 20.dp)
+                //.padding(bottom = 20.dp)
             ){
-            OutlinedTextField(
-                value = textNama,
-                singleLine = true,
-                shape = MaterialTheme.shapes.large,
-                modifier = Modifier
-                    .padding(top = 30.dp, start = 50.dp, end = 50.dp)
-                    .fillMaxWidth()
-                    .height(height = 70.dp),
-                label = { Text(text = "Nama Lengkap")},
-                onValueChange = {
-                    textNama = it
+                OutlinedTextField(
+                    value = textNama,
+                    singleLine = true,
+                    shape = MaterialTheme.shapes.large,
+                    modifier = Modifier
+                        .padding(top = 15.dp, start = 30.dp, end = 30.dp)
+                        .fillMaxWidth()
+                        .height(height = 70.dp),
+                    label = { Text(text = "Nama Lengkap")},
+                    onValueChange = {
+                        textNama = it
+                    }
+                )
+
+                //Spacer(modifier = Modifier.height(10.dp))
+
+                OutlinedTextField(
+                    value = textKota,
+                    singleLine = true,
+                    shape = MaterialTheme.shapes.large,
+                    modifier = Modifier
+                        .padding(top = 15.dp, start = 30.dp, end = 30.dp)
+                        .fillMaxWidth()
+                        .height(height = 70.dp),
+                    label = { Text(text = "Asal Kota")},
+                    onValueChange = {
+                        textKota = it
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+                Row {
+                    OutlinedTextField(
+                        value = textTanggal,
+                        singleLine = true,
+                        shape = MaterialTheme.shapes.large,
+                        modifier = Modifier
+                            .padding(start = 30.dp)
+                            .width(width = 150.dp)
+                            .height(height = 70.dp),
+                        label = { Text(text = "Tanggal Lahir") },
+                        onValueChange = {
+                            textTanggal = it
+                        }
+                    )
+
+                    OutlinedTextField(
+                        value = textRW,
+                        singleLine = true,
+                        shape = MaterialTheme.shapes.large,
+                        modifier = Modifier
+                            .padding(start = 20.dp)
+                            .width(width = 70.dp)
+                            .height(height = 70.dp),
+                        label = { Text(text = "RW") },
+                        onValueChange = {
+                            textRW = it
+                        }
+                    )
+
+                    //Spacer(modifier = Modifier.width(width = 20.dp))
+
+                    OutlinedTextField(
+                        value = textRT,
+                        singleLine = true,
+                        shape = MaterialTheme.shapes.large,
+                        modifier = Modifier
+                            .padding(start = 20.dp)
+                            .width(width = 70.dp)
+                            .height(height = 70.dp),
+                        label = { Text(text = "RT") },
+                        onValueChange = {
+                            textRT = it
+                        }
+                    )
                 }
-            )
-
-            //Spacer(modifier = Modifier.height(10.dp))
-
-            OutlinedTextField(
-                value = textKota,
-                singleLine = true,
-                shape = MaterialTheme.shapes.large,
-                modifier = Modifier
-                    .padding(top = 30.dp, start = 50.dp, end = 50.dp)
-                    .fillMaxWidth()
-                    .height(height = 70.dp),
-                label = { Text(text = "Asal Kota")},
-                onValueChange = {
-                    textKota = it
-                }
-            )
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Row() {
-                OutlinedTextField(
-                    value = textTanggal,
-                    singleLine = true,
-                    shape = MaterialTheme.shapes.large,
-                    modifier = Modifier
-                        .padding(start = 50.dp)
-                        .width(width = 120.dp)
-                        .height(height = 70.dp),
-                    label = { Text(text = "Tanggal Lahir") },
-                    onValueChange = {
-                        textTanggal = it
-                    }
-                )
-
-                OutlinedTextField(
-                    value = textRW,
-                    singleLine = true,
-                    shape = MaterialTheme.shapes.large,
-                    modifier = Modifier
-                        .padding(start = 30.dp)
-                        .width(width = 70.dp)
-                        .height(height = 70.dp),
-                    label = { Text(text = "RW") },
-                    onValueChange = {
-                        textRW = it
-                    }
-                )
-
-                //Spacer(modifier = Modifier.width(width = 5.dp))
-
-                OutlinedTextField(
-                    value = textRT,
-                    singleLine = true,
-                    shape = MaterialTheme.shapes.large,
-                    modifier = Modifier
-                        .padding(start = 5.dp)
-                        .width(width = 70.dp)
-                        .height(height = 70.dp),
-                    label = { Text(text = "RT") },
-                    onValueChange = {
-                        textRT = it
-                    }
-                )
-            }
 
                 Spacer(modifier = Modifier.height(height = 10.dp))
 
@@ -180,7 +181,7 @@ fun Praktikum5(modifier: Modifier){
                     singleLine = true,
                     shape = MaterialTheme.shapes.large,
                     modifier = Modifier
-                        .padding(top = 10.dp, start = 50.dp, end = 50.dp)
+                        .padding(top = 3.dp, start = 30.dp, end = 30.dp)
                         .fillMaxWidth()
                         .height(height = 70.dp),
                     label = {Text(text = "Umur")},
@@ -197,35 +198,36 @@ fun Praktikum5(modifier: Modifier){
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
-                        .padding(top = 10.dp, start = 50.dp),
+                        .padding(top = 10.dp, start = 30.dp),
                 )
                 Row {
                     gender.forEach { item ->
                         Row(
                             modifier = Modifier
-                                .padding(start = 40.dp)
+                                .padding(start = 20.dp)
                                 .selectable(
                                     selected = textJK == item,
-                                    onClick = {textJK = item},
+                                    onClick = {textJK = item}
                                 ), verticalAlignment = Alignment.CenterVertically
                         ){
-                                RadioButton(
-                                    selected = textJK == item,
-                                    onClick = {
-                                        textJK = item
-                                    })
+                            RadioButton(
+                                selected = textJK == item,
+                                onClick = {
+                                    textJK = item
+                                }
+                            )
                             Text(text = item)
-                            }
+                        }
                     }
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ){
                     Checkbox(
-                        modifier = Modifier.padding(start = 40.dp),
+                        modifier = Modifier.padding(start = 65.dp),
                         checked = validasi.value,
                         onCheckedChange = {
-                            newValue -> validasi.value = newValue
+                                newValue -> validasi.value = newValue
                         }
                     )
                     Text(modifier = Modifier.padding(end = 40.dp),
@@ -245,13 +247,13 @@ fun Praktikum5(modifier: Modifier){
 
                     enabled = validasi.value,
                     onClick = {
-                        Nama = textNama
-                        Kota = textKota
-                        Tanggal = textTanggal
-                        RT = textRT
-                        RW = textRW
-                        Umur = textUmur
-                        JenisKelamin = textJK
+                        nama = textNama
+                        kota = textKota
+                        tanggal = textTanggal
+                        rt = textRT
+                        rw = textRW
+                        umur = textUmur
+                        jenisKelamin = textJK
 
                         showDialog = true
                     }
@@ -266,12 +268,12 @@ fun Praktikum5(modifier: Modifier){
                 title = {Text(text = "Data Pendaftaran")},
                 text = {
                     Column {
-                        Text(text = "Nama:$Nama")
-                        Text(text = "Asal Kota:$Kota")
-                        Text(text = "Tgl Lahir:$Tanggal")
-                        Text(text = "Alamat: RT $RT / RW $RW")
-                        Text(text = "Umur:$Umur")
-                        Text(text = "Jenis Kelamin:$JenisKelamin")
+                        Text(text = "Nama       :$nama")
+                        Text(text = "Asal Kota  :$kota")
+                        Text(text = "Tgl Lahir  :$tanggal")
+                        Text(text = "Alamat     : RT $rt / RW $rw")
+                        Text(text = "Umur       :$umur")
+                        Text(text = "Kelamin    :$jenisKelamin")
                     }
                 },
                 confirmButton = {
@@ -295,4 +297,4 @@ fun Praktikum5(modifier: Modifier){
             )
         }
     }
-    }
+}
