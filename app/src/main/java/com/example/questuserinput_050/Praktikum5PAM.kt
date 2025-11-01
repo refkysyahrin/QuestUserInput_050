@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -198,9 +199,24 @@ fun Praktikum5(modifier: Modifier){
                                     onClick = {
                                         textJK = item
                                     })
-                            Text(item)
+                            Text(text = item)
                             }
                     }
+                }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Checkbox(modifier = Modifier.padding(start = 4.dp),
+                        checked = validasi.value,
+                        onCheckedChange = {
+                            newValue -> validasi.value = newValue
+                        }
+                    )
+                    Text(modifier = Modifier.padding(end = 40.dp),
+                        text = "Saya setuju dengan syarat dan ketentuan yang berlaku",
+                        fontSize = 15.sp,
+                        color = Color.Black
+                    )
                 }
 
 
